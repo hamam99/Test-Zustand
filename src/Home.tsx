@@ -1,10 +1,34 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
+import useStoreZustand from './hooks/useStoreZustand';
 
 const Home = () => {
+  const {count, increaseCount, reduceCount, clearCount} = useStoreZustand(
+    state => state,
+  );
+
+  const navigation = useNavigation();
+
+  const gotoDetail = () => {
+    navigation.navigate('Details');
+  };
+
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>HOME</Text>
+      <View
+        style={{
+          alignItems: 'center',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          marginVertical: 20,
+        }}>
+        <Button title="-" onPress={reduceCount} />
+        <Text style={{paddingHorizontal: 20}}>{count}</Text>
+        <Button title="+" onPress={increaseCount} />
+      </View>
+      <Button title="Clear Count" onPress={clearCount} />
+      <Button title="Go to Details" onPress={gotoDetail} />
     </View>
   );
 };
