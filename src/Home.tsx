@@ -4,9 +4,8 @@ import {View, Text, Button} from 'react-native';
 import useStoreZustand from './hooks/useStoreZustand';
 
 const Home = () => {
-  const {count, increaseCount, reduceCount, clearCount} = useStoreZustand(
-    state => state,
-  );
+  const {count, increaseCount, reduceCount, clearCount, log2, log1} =
+    useStoreZustand(state => state);
 
   const navigation = useNavigation();
 
